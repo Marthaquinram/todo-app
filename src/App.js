@@ -1,23 +1,26 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
+//Components
+import TodoForm from './components/todoForm';
+import TodoList from './components/todoList';
+
+
 function App() {
+  //first time this runs the state will be set to nothing/empty
+  const [task, setTask] = useState([]);
+
+  const addATask = (task) => {
+    //this is taking the previous state and passing it, updating it with the new state
+    setTask(prevState => [...prevState, task]);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="container">
+      <header>
+        <h1> My Todo List</h1>
       </header>
+      <TodoForm addTask={addATask} />
+      {task && <TodoList tasks={task} />}
     </div>
   );
 }
