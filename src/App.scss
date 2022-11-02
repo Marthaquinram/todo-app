@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+
+$primary: #5c9090;
+$primary-dark: #efbc68;
+$dark: #5f9595;
+$dark-light: #f7b09c;
+$white: rgb(255, 255, 255);
+$red: #ed0000;
+
+body{
+font-family: 'Caveat', cursive;
+padding: 0;
+margin: 0;
+background-color: $dark;
+color: $white;
+}
+*, *:before, *:after{
+  box-sizing: border-box;
+}
+p, h1, h2, h3, h4 {
+  margin: 0;
+}
+
+button, input, textarea{
+font-family: 'Caveat', cursive;
+}
+
+.main-header{
+  max-width: 768px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 15px;
+
+&__inner{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+&__left{
+  a{
+    color: $white;
+    font-weight: 700;
+    font-size: 2rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  
+  &:hover{
+opacity: 0.7;
+  }
+}
+}
+}
+.btn{
+  display: inline-block;
+  background-color: $primary;
+  padding: 10px 20px;
+  border: none;
+color: $white;
+border-radius: 5px;
+font-size: 1rem;
+transition: all 0.2s ease;
+text-decoration: none;
+
+&:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+&:hover{
+  background-color: $primary-dark;
+  cursor: pointer;
+}
+}
+.auth{
+  display: flex;
+  margin-top: 50px;
+  align-items: center;
+  justify-content: center;
+
+
+  &__boxy{
+    max-width: 500px;
+    width: 100%;
+    padding: 50px;
+    background-color: $dark-light;
+    color: $white;
+    border-radius: 5px;
+  }
+
+  &__header{
+    margin-bottom: 20px;
+    text-align: center;
+
+  }
+
+  &__field{
+    margin-bottom: 30px;
+  
+    label{
+      font-size: 1.5rem;
+      display: block;
+      margin-bottom: 10px;
+    }
+    input{
+      background-color: $dark;
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 5px;
+      color: $white;
+      font-size: 1.25rem;
+
+        &:focus{
+      outline:none;
+      }
+    }
+  }
+&__footer {
+  .btn {
+    width: 100%;
+  }
+
+  .auth__error {
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 1.25rem;
+  }
+}
+
+&__error {
+  font-size: 1rem;
+  margin-top: 10px;
+  color: $red;
+}
+
+
+
+}
