@@ -2,13 +2,15 @@
 import React from 'react';
 import './App.scss';
 import Layout from './components/layout';
+import { GlobalProvider } from './context/globalContext';
+
 
 //Components
-
 function App() {
   return (
-    <Layout />
-
+    <GlobalProvider>
+      <Layout />
+    </GlobalProvider>
   );
 }
 

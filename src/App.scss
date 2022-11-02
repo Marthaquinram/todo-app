@@ -133,6 +133,12 @@ text-decoration: none;
   color: $red;
 }
 
-
+.loading{
+  min-width: 100vw;
+  min-height: 10vh;
+  display: flex;
+align-items: center;
+justify-content: center;
+}
 
 }
