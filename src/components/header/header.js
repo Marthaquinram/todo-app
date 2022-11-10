@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useGlobalContext } from "../../context/globalContext";
@@ -15,6 +14,7 @@ const Header = () => {
         </div>
 
         <div className="main-header__right">
+          {/* if there is a user so the logout user.  */}
           {user ? (
             <button className="btn" onClick={logout}>
               Logout

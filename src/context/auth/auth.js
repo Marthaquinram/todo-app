@@ -4,7 +4,8 @@ import axios from 'axios';
 import { useGlobalContext } from '../globalContext';
 
 
-const AuthBoxy = ({ register }) => {
+const AuthBoxy = (register) => {
+  console.log("register", register);
   const { getCurrentUser, user } = useGlobalContext();
   const navigate = useNavigate();
   const [email, setEmail] = React.useState("");
@@ -17,7 +18,7 @@ const AuthBoxy = ({ register }) => {
 
   React.useEffect(() => {
     if (user && navigate) {
-      navigate("/dashboard", { replace: true });
+      navigate("/dashboard");
     }
   }, [user, navigate])
 
@@ -41,10 +42,10 @@ const AuthBoxy = ({ register }) => {
         email,
         password,
       };
+      console.log("IM RIGHT HERE", data);
     }
 
-    axios
-      .post(register ? "http://localhost:3001/api/auth/register" : "http://localhost:3001/api/auth/login", data)
+    axios.post(register ? "http://localhost:3002/api/auth/register" : "http://localhost:3002/api/auth/login", data)
       .then(() => {
         getCurrentUser();
       })

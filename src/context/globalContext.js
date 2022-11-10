@@ -52,19 +52,27 @@ export const GlobalContext = createContext(initialState);
 export const GlobalProvider = (props) => {
   const [state, dispatch] = useReducer(globalReducer, initialState);
 
+  //everytime the app starts or its refreshed/loads up
+  //we want to make an api call to get the current user, to see if theres an access token in the cookies. if there is an access token we need to set up the current data.
   useEffect(() => {
     getCurrentUser();
   }, []);
-
-  // action: get current user
+  // new action this function will gett all the data we when we think the user is logged in,
   const getCurrentUser = async () => {
+    console.log("HEYYY CAN YOU SEE ME");
     try {
-      const res = await axios.get("http://localhost:3001/api/auth/current");
-
+      //making a call to our backend Api 
+      const res = await axios.get("http://localhost:3002/api/auth/current");
+      console.log("HEYYY RESSSSS!!!!", res);
+      //if theres a user present we will expect res.data, if there is datat returned it would be on the res
       if (res.data) {
-        const toDosRes = await axios.get("http://localhost:3001/api/todos/current");
-
+        //grab the users todos to then store in state
+        const toDosRes = await axios.get("http://localhost:3002/api/todos/current");
+        // if we have data and the user is logged in then we will grab the todos.
         if (toDosRes.data) {
+          console.log("HEYYY inside IF BLOCK!!!!", toDosRes.data);
+          //dispatch will speak with out reducer and we are passing the payload. to get the user infomation.
+          //payload has the users data info.
           dispatch({ type: "SET_USER", payload: res.data });
           dispatch({
             type: "SET_COMPLETE_TODOS",
@@ -75,8 +83,11 @@ export const GlobalProvider = (props) => {
             payload: toDosRes.data.incomplete,
           });
         }
-      } else {
+      }
+      else {
+        // console.log("HEYYY inside else!!!!", data);
         dispatch({ type: "RESET_USER" });
+
       }
     } catch (err) {
       console.log(err);
@@ -86,7 +97,7 @@ export const GlobalProvider = (props) => {
 
   const logout = async () => {
     try {
-      await axios.put("http://localhost:3001/api/auth/logout");
+      await axios.put("http://localhost:3002/api/auth/logout");
 
       dispatch({ type: "RESET_USER" });
     } catch (err) {
